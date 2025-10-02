@@ -11,7 +11,6 @@ import jakarta.ws.rs.ext.Provider;
 public class ConstraintViolationExceptionMapper implements ExceptionMapper<ConstraintViolationException> {
     @Override
     public Response toResponse(ConstraintViolationException ex) {
-        // Mostramos el primer mensaje legible
         String msg = ex.getConstraintViolations().stream()
                 .findFirst().map(ConstraintViolation::getMessage).orElse("Validation error");
         return Response.status(Response.Status.BAD_REQUEST)
